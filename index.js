@@ -14,21 +14,27 @@ const main = async () => {
     switch(opt){
       case 1:
         const place = await readInput('City: ')
-        await search.city(place)
+        const cities = await search.city(place)
+        search.addHistory(cities.name)
+        // console.log(cities)
 
 
 
 
         console.log('\nCity information\n'.green)
-        console.log('City:')
-        console.log('Lat:')
-        console.log('Long:')
-        console.log('Temp:')
-        console.log('Min:')
-        console.log('Max:')
+        console.log(`City: ${cities.name}`)
+        console.log(`Country: ${cities.country}`)
+        console.log(`Lat: ${cities.lat}`)
+        console.log(`Long: ${cities.lon}`)
+        console.log(`Temp: ${cities.temp}`)
+        console.log(`Weather: ${cities.weather}`)
+        console.log(`Humidity: ${cities.humidity}`)
         break
       case 2:
-        console.log('this is option 2')
+        search.history.forEach((place,i)=>{
+          const idx = `${i+1}.`.green
+          console.log(`${idx} ${place}`)
+        })
         break
     }
 
